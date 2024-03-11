@@ -1,0 +1,29 @@
+<odoo>
+    <data>
+        <record id="view_input_code" model="ir.ui.view">
+            <field name="name">Update Code For Customer</field>
+            <field name="model">mass.action.update.code</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <h6>Mời bạn nhập mã khuyến mãi.</h6>
+                    </group>
+                    <field name="new_code_update"/>
+                    <footer>
+                        <button string="Cập nhật" name="update_code_for_cus" type="object" class="btn-primary"/>
+                        <button string="Hủy" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="update_code" model="ir.actions.act_window">
+            <field name="name">Nhập mã khuyến mãi</field>
+            <field name="res_model">mass.action.update.code</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_input_code"/>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="base.model_res_partner"/>
+        </record>
+    </data>
+</odoo>

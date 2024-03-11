@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="module_sale" model="ir.module.category">
+        <field name="name">Sales Code</field>
+        <field name="sequence">-100</field>
+    </record>
+
+    <record id="sale_group_see_code" model="res.groups">
+        <field name="name">Người dùng có thể nhìn thấy mã khuyến mãi</field>
+        <field name="category_id" ref="module_sale"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+</odoo>

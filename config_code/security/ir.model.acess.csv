@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_can_see_code,access_can_see_code,model_res_partner,sale_group_see_code,1,1,1,1

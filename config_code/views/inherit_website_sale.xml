@@ -1,0 +1,13 @@
+<odoo>
+    <template id="inherit_total" inherit_id="website_sale.total" customize_show="True">
+        <xpath expr="//tr[@id='order_total_taxes']" position="after">
+            <tr id="sale_code">
+                <td class="text-right border-0">Mã khuyến mãi:</td>
+                <td class="text-xl-right border-0">
+                    <input type="text" id="promo_code_input"/>
+                    <button type="button" class="btn btn-primary" onclick="applyPromoCode()">Áp dụng</button>
+                </td>
+            </tr>
+        </xpath>
+    </template>
+</odoo>

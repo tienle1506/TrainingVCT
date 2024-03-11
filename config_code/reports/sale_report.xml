@@ -1,0 +1,31 @@
+<odoo>
+    <data>
+        <record id="view_input_date" model="ir.ui.view">
+            <field name="name">Chọn khoảng thời gian xuất báo</field>
+            <field name="model">report.sale.order</field>
+            <field name="arch" type="xml">
+                <form string="Báo cáo theo dõi đơn hàng" save="false" create="false" edit="false" delete="false">
+                    <label for="date_start" string="Thời gian :"/>
+                    <div class="o_row no-gutters">
+                        Từ:
+                        <field name="date_start" class="text-left" style="width:40%%"/>
+                        Đến:
+                        <field name="date_finish"/>
+                    </div>
+                    <footer>
+                        <button string="Xuất báo cáo" name="get_report_values" type="object" class="btn-primary"/>
+                        <button string="Hủy" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_print_report" model="ir.actions.act_window">
+            <field name="name">In báo cáo</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">report.sale.order</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

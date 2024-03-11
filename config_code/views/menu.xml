@@ -1,0 +1,22 @@
+<odoo>
+    <menuitem
+            id="customer_code"
+            name="Khách hàng có mã khuyến mãi"
+            parent="sale.sale_order_menu"
+            action="config_code.res_partner_action_customer_code"
+            sequence="8"
+    />
+    <menuitem
+            id="report"
+            name="Báo cáo"
+            parent="sale.sale_menu_root"
+            sequence="8"
+    />
+    <menuitem
+            id="sale_report"
+            name="Theo dõi đơn hàng"
+            parent="report"
+            action="action_print_report"
+            sequence="8"
+    />
+</odoo>
