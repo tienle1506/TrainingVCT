@@ -1,17 +1,15 @@
-function applyPromoCode() {
-    var promoCodeInput = document.getElementById("promo_code_input");
-    var promoCode = promoCodeInput.value;
-
-    if (promoCode) {
-        // Gọi hàm kiểm tra mã khuyến mãi ở phía server
-        openerp.jsonRpc('/check_promo_code', 'call', {'promo_code': promoCode}).then(function (result) {
-            if (result) {
-                alert("Áp dụng mã khuyến mãi thành công");
-            } else {
-                alert("Mã khuyến mãi không thoả mãn");
-            }
+$(document).ready(function(){
+        $('#apply_promo_btn').click(function(event){
+            event.preventDefault();
+            var self = this;
+            // Thực hiện gọi hàm RPC
+            return self._rpc({
+                model: 'res.partner',
+                method: 'check_code_in_website_sale',
+                args: [],
+                context: self.initialState.context,
+            }).then(function(result) {
+                self.do_action(result);
+            });
         });
-    } else {
-        alert("Vui lòng nhập mã khuyến mãi");
-    }
-}
+    });

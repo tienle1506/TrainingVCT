@@ -1,11 +1,26 @@
 <odoo>
+    <template id="inherit_coupon_form" inherit_id="website_sale.coupon_form" customize_show="True">
+        <xpath expr="//form[@name='coupon_code']" position="replace">
+            <form t-att-action="'/shop/code%s' % (redirect and '?r=' + redirect or '')"
+                  method="post" name="coupon_code">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <div class="input-group w-100">
+                    <input name="promo_code_input" class="form-control" type="text" placeholder="Mã khuyến mãi"
+                           t-att-value="website_sale_order.pricelist_id.code or None"/>
+                    <div class="input-group-append">
+                        <a href="#" role="button" class="btn btn-secondary a-submit">Áp dụng</a>
+                    </div>
+                </div>
+            </form>
+        </xpath>
+    </template>
+    
     <template id="inherit_total" inherit_id="website_sale.total" customize_show="True">
         <xpath expr="//tr[@id='order_total_taxes']" position="after">
             <tr id="sale_code">
-                <td class="text-right border-0">Mã khuyến mãi:</td>
-                <td class="text-xl-right border-0">
-                    <input type="text" id="promo_code_input"/>
-                    <button type="button" class="btn btn-primary" onclick="applyPromoCode()">Áp dụng</button>
+                <td class="text-right">Mã khuyến mãi:</td>
+                <td class="text-xl-right">
+                    <strong t-field="website_sale_order.conf_code_ref"/>
                 </td>
             </tr>
         </xpath>

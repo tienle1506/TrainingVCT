@@ -7,6 +7,7 @@ import xlsxwriter
 
 class ReportSaleOrder(models.Model):
     _name = 'report.sale.order'
+    _description = 'Báo cáo theo dõi đơn hàng'
 
     date_start = fields.Date(default=lambda self: self._get_server_date())
     date_finish = fields.Date(default=lambda self: self._get_server_date())
@@ -28,12 +29,14 @@ class ReportSaleOrder(models.Model):
         workbook = xlsxwriter.Workbook(output)
         worksheet = workbook.add_worksheet("Sales Order Tracking")
 
-        title_format = workbook.add_format({'bold': True, 'font_size': 16})
+        title_format = workbook.add_format({'bold': True, 'font_size': 20, 'font_name': 'Time New Roman'})
         title_format.set_align('center')
-        worksheet.merge_range('A1:C1', 'Theo dõi đơn hàng', title_format)
+        worksheet.merge_range('A1:M1', 'Theo dõi đơn hàng', title_format)
+        date_format = workbook.add_format({'bold': True, 'font_size': 16, 'font_name': 'Time New Roman'})
         header_format = workbook.add_format({'bold': True, 'bg_color': '#F2F2F2'})
-        worksheet.write_string('A2', f'Từ:{self.date_start} Đến: {self.date_finish}', header_format)
-        worksheet.write_row('A3', ['Mã đơn hàng', 'Tổng đơn hàng', 'Đơn giá phải trả'], header_format)
+        worksheet.write_string('A3:M3', f'Từ:{self.date_start} Đến: {self.date_finish}', date_format)
+        title_format.set_align('center')
+        worksheet.write_row('A5', ['Mã đơn hàng', 'Tổng đơn hàng', 'Đơn giá phải trả'], header_format)
 
         self._cr.execute("""
                     SELECT name, amount_untaxed + amount_tax as total_amount, amount_total
@@ -42,7 +45,7 @@ class ReportSaleOrder(models.Model):
                 """, (self.date_start, self.date_finish))
         orders = self._cr.fetchall()
 
-        row = 3
+        row = 7
         for order in orders:
             worksheet.write(row, 0, order[0])  # Mã đơn hàng
             worksheet.write(row, 1, order[1])  # Tổng đơn hàng
