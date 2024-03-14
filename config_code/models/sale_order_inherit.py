@@ -24,10 +24,8 @@ class SaleOrder(models.Model):
         Compute the total amounts order
         """
         for order in self:
-            amount_untaxed = amount_tax = 0.0
-            for line in order.order_line:
-                amount_untaxed += line.price_subtotal
-                amount_tax += line.price_tax
+            amount_untaxed = sum(line.price_subtotal for line in order.order_line)
+            amount_tax = sum(line.price_tax for line in order.order_line)
             if self.conf_code_ref:
                 code = int(self.conf_code_ref.split('_')[1])
                 # Add your custom logic here to modify amount_total, amount_untaxed, amount_tax if needed
@@ -50,10 +48,9 @@ class SaleOrder(models.Model):
 
     def apply_code(self, order, coupon_code):
         order.conf_code_ref = coupon_code
-        amount_untaxed = amount_tax = 0.0
-        for line in order.order_line:
-            amount_untaxed += line.price_subtotal
-            amount_tax += line.price_tax
+        # for ord in order:
+        amount_untaxed = sum(line.price_subtotal for line in order.order_line)
+        amount_tax = sum(line.price_tax for line in order.order_line)
         if order.conf_code_ref:
             code = int(order.conf_code_ref.split('_')[1])
             # Add your custom logic here to modify amount_total, amount_untaxed, amount_tax if needed
