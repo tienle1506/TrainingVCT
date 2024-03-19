@@ -1,60 +1,8 @@
 <odoo>
-  <data>
-    <!-- explicit list view definition -->
-<!--
-    <record model="ir.ui.view" id="vct_weather.list">
-      <field name="name">vct_weather list</field>
-      <field name="model">vct_weather.vct_weather</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
-      </field>
-    </record>
--->
-
-    <!-- actions opening views on models -->
-<!--
-    <record model="ir.actions.act_window" id="vct_weather.action_window">
-      <field name="name">vct_weather window</field>
-      <field name="res_model">vct_weather.vct_weather</field>
-      <field name="view_mode">tree,form</field>
-    </record>
--->
-
-    <!-- server action to the one above -->
-<!--
-    <record model="ir.actions.server" id="vct_weather.action_server">
-      <field name="name">vct_weather server</field>
-      <field name="model_id" ref="model_vct_weather_vct_weather"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": model._name,
-        }
-      </field>
-    </record>
--->
-
-    <!-- Top menu item -->
-<!--
-    <menuitem name="vct_weather" id="vct_weather.menu_root"/>
--->
-    <!-- menu categories -->
-<!--
-    <menuitem name="Menu 1" id="vct_weather.menu_1" parent="vct_weather.menu_root"/>
-    <menuitem name="Menu 2" id="vct_weather.menu_2" parent="vct_weather.menu_root"/>
--->
-    <!-- actions -->
-<!--
-    <menuitem name="List" id="vct_weather.menu_1_list" parent="vct_weather.menu_1"
-              action="vct_weather.action_window"/>
-    <menuitem name="Server to list" id="vct_weather" parent="vct_weather.menu_2"
-              action="vct_weather.action_server"/>
--->
-  </data>
+<!--    <menuitem-->
+<!--            id="weather_menu_root"-->
+<!--            name="Thời tiết"-->
+<!--            action="vct_weather.action_open_form_weather"-->
+<!--            sequence="1"-->
+<!--    />-->
 </odoo>
