@@ -10,7 +10,9 @@
                     <div class="col">
                         <h1 class="">DỰ BÁO THỜI TIẾT</h1>
                     </div>
-                    <div class="col"></div>
+                    <div class="col">
+                        
+                    </div>
                 </div>
                 <form id="dateForm">
                     <div class="form-group">
